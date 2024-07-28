@@ -1,30 +1,33 @@
+from typing import Any
+
 from src.product import Product
 
 
 class Category:
     name: str
     description: str
-    products: list
-    count_category = 0
-    count_products = 0
+    __products: list
+    category_count = 0
+    product_count = 0
 
-    def __init__(self, name, description, products=None):
+    def __init__(self, name: str, description: str, products: list):
         self.name = name
         self.description = description
-        self.products = products if products else []
-        Category.count_category += 1
-        Category.count_products += len(products) if products else 0
+        self.__products = products
+        Category.category_count += 1
+        Category.product_count += len(products)
 
+    @property
+    def products(self) -> str:
+        product_str = ""
+        for product in self.__products:
+            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        return product_str
 
-if __name__ == "__main__":
-    prod1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-    prod2 = Product("Iphone 15 Pro Max", "256GB, Серый цвет, 1000MP камера", 175000.0, 2)
-    prod3 = Product("Xiaomi", "16GB, Белый цвет, 5MP камера", 12000.0, 9)
-    prod4 = Product("Nokia", "8GB, Черный цвет, 3MP камера", 6000.0, 15)
+    @property
+    def products_list(self) -> Any:
+        return self.__products
 
-    category = Category("Телефоны", "Мобильные телефоны, для улучшения качества жизни", [prod1, prod2, prod3, prod4])
-    print(category.name)
-    print(category.description)
-    print(category.products)
-    print(category.count_category)
-    print(category.count_products)
+    def add_product(self, product: Product) -> None:
+        self.__products.append(product)
+        Category.product_count += 1

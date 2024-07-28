@@ -1,13 +1,17 @@
-def test_category_init(first_category, second_category):
-    assert first_category.name == "Телефоны"
-    assert first_category.description == "Телефоны улучшают качество жизни"
-    assert len(first_category.products) == 2
-    assert second_category.name == "Телевизоры"
-    assert second_category.description == "Улучшают просмотр Ютуба в домашних условиях"
-    assert len(second_category.products) == 3
+def test_category(category1, category2, product4):
+    assert category1.name == "Смартфоны"
+    assert (
+        category2.description
+        == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
+    )
 
-    assert first_category.count_category == 2
-    assert second_category.count_category == 2
-
-    assert first_category.count_products == 5
-    assert second_category.count_products == 5
+    assert category1.category_count == 2
+    assert category2.product_count == 4
+    assert (
+        category1.products
+        == """Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.
+Iphone 15, 210000.0 руб. Остаток: 8 шт.
+Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"""
+    )
+    category2.add_product(product4)
+    assert category2.product_count == 5
