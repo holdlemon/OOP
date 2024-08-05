@@ -18,13 +18,16 @@ E-commerce  — электронная торговля, или электрон
 
 ## Функционал
 
-Функционал разбит на 6 модулей:
+Функционал разбит на 9 модулей:
 1. `utils`
 2`product`
 3`category`
 4`product_iterator`
 5`lawn_grass`
 6`smartphone`
+7`base_product`
+8`order`
+9`print_mixin`
 
 ## Тестирование:
 
